@@ -11,6 +11,7 @@ solution = Solution()
 
 print(solution.removeElement(nums=[3,2,2,3], val=3))  #  2   nums = [2,2,_,_]      
 
+
 '''
 Example 1:
 
