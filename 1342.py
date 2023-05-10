@@ -1,9 +1,43 @@
 # 1342. Number of Steps to Reduce a Number to Zero
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        ...
+        # return [el for el in range(num, 0, -1)][-1]
+        result = 0
+        while num:
+            if num % 2 == 0:
+                num /= 2
+
+            else:
+                num -= 1
+            result +=1
+
+        return result
 
 
+solution = Solution()
+
+print(solution.numberOfSteps(99789))  # 14->6
+
+
+class Solution:
+    def numberOfSteps(self, num: int) -> int:
+        result = 0
+        while num:
+            num = num // 2 if not (num % 2) else num - 1
+            result +=1
+
+        return result
+
+
+solution = Solution()
+
+print(solution.numberOfSteps(99789))  # 25
+# print(solution.numberOfSteps(14))  # 6
+# print(solution.numberOfSteps(8))  # 4
+# print(solution.numberOfSteps(123))  # 12
+# print(solution.numberOfSteps(8))  # 4
+# print(solution.numberOfSteps(9))  # 4
+# print(solution.numberOfSteps(10))  # 4
 
 '''
 Example 1:
@@ -31,3 +65,34 @@ Example 3:
 Input: num = 123
 Output: 12
 '''
+
+# import math as m
+
+
+# class Solution:
+#     def numberOfSteps(self, num: int) -> int:
+#         result = 0
+#         nnum = 0
+#         for el in range(int(m.log2(10**6)) + int(pow(10**6, 0.5)) + 3):
+#             if nnum >= num or nnum+1 >= num:
+#                 return result if nnum+1 > num else result-1
+            
+#             if nnum % 2 == 0:
+#                 nnum += 1
+#             else:
+#                 nnum *= 2
+
+#             result += 1
+
+#         return result
+
+
+# solution = Solution()
+
+# print(solution.numberOfSteps(14))  # 6
+# print(solution.numberOfSteps(8))  # 4
+# print(solution.numberOfSteps(123))  # 12   99789
+# print(solution.numberOfSteps(99789))  # 25
+
+# # 0 <= num <= 10^6
+# int(m.log2(10**6)) + int(pow(10**6, 0.5)) + 2
