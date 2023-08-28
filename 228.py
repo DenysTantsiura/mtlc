@@ -31,10 +31,41 @@ Constraints:
 All the values of nums are unique.
 nums is sorted in ascending order.
 """
+
 from typing import List
 
 
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        ...
-        return
+        blocks = []
+        if nums:
+            block = ''  # str(nums[0])
+
+        else:
+            return blocks
+
+        for el in range(len(nums)):
+            if el == 0:
+                block = f'{nums[el]}'
+                continue
+
+            if nums[el] - 1 != nums[el - 1]:
+                block = f'{block}->{nums[el - 1]}' if block != f'{nums[el-1]}' else block
+                blocks.append(block)
+                block = f'{nums[el]}'
+
+            elif nums[el] == nums[-1]:
+                block = f'{block}->{nums[el]}' if block else block
+
+        blocks.append(block)
+
+        return blocks
+
+
+test = Solution()
+
+print(test.summaryRanges([]))
+print(test.summaryRanges([0,1,2,4,5,7]))
+print(test.summaryRanges([0,2,3,4,6,8,9]))
+print(test.summaryRanges([0,1,4,5,9,10]))
+print(test.summaryRanges([0,2,4,6,7]))
